@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5"
+        />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="./img/favicon.ico" />
+
+        <title>BestRest Form</title>
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="./styles/style.scss" />
+
+        <!-- Script -->
+        <script type="module" src="./js/main.js"></script>
+    </head>
+
+    <body>
+        <main>
+            <section class="contact">
+                <div class="cont">
+                    <div class="contact__heading">
+                        <div class="contact__logo">
+                            <img src="./img/logo.svg" alt="BestRest Form" />
+                        </div>
+
+                        <h1 class="contact__title">
+                            <span>Sign Up</span> and find the best place to rest
+                            while traveling
+                        </h1>
+                    </div>
+
+                    <form class="contact__form">
+                        <div class="input-item">
+                            <input type="text" id="name" />
+                            <label for="name">First Name</label>
+                            <i class="icon-user"></i>
+                        </div>
+
+                        <div class="input-item">
+                            <input type="text" id="surname" />
+                            <label for="surname">Second Name</label>
+                            <i class="icon-users"></i>
+                        </div>
+
+                        <div class="input-item">
+                            <select id="location" class="js-select">
+                                <option value="">Country</option>
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Albania">Albania</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="Andorra">Andorra</option>
+                            </select>
+                            <label for="location">Country</label>
+                            <i class="icon-marker"></i>
+                        </div>
+
+                        <div class="input-item">
+                            <input type="text" id="phone" />
+                            <label for="phone">Phone</label>
+                            <i class="icon-phone"></i>
+                        </div>
+
+                        <div class="input-item">
+                            <input type="password" id="password" />
+                            <label for="password">Password</label>
+                            <i class="icon-lock"></i>
+                        </div>
+
+                        <div class="input-item">
+                            <input type="password" id="confirm" />
+                            <label for="confirm">Confirm password</label>
+                            <i class="icon-locks"></i>
+                        </div>
+
+                        <div class="input-item">
+                            <input type="email" id="email" />
+                            <label for="email">Email</label>
+                            <i class="icon-mail"></i>
+                        </div>
+
+                        <div class="checkbox">
+                            <input type="checkbox" id="checkbox" />
+                            <label for="checkbox">
+                                I agree to the
+                                <a href="#">Terms & Conditions</a>
+                            </label>
+                        </div>
+                    </form>
+
+                    <div class="contact__footer">
+                        <p>If you have an account, <a href="#">Log In</a></p>
+                    </div>
+                </div>
+
+                <div class="contact__bg">
+                    <picture>
+                        <source
+                            srcset="./img/bg-cover.webp"
+                            type="image/webp"
+                        />
+                        <img src="./img/bg-cover.jpg" alt="" />
+                    </picture>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
