@@ -48,20 +48,37 @@
                     <form class="contact__form">
                         <div class="contact__form-wrap">
                             <div class="input-item">
-                                <input type="text" id="name" name="name" />
-                                <label for="name">First Name</label>
+                                <input
+                                    autocomplete="one-time-code"
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                />
+                                <span class="focus-border"></span>
+
+                                <label class="label" for="name">
+                                    First Name
+                                </label>
                                 <i class="icon-user"></i>
                             </div>
 
                             <div class="input-item">
-                                <input type="text" id="surname" />
-                                <label for="surname">Second Name</label>
+                                <input
+                                    autocomplete="one-time-code"
+                                    type="text"
+                                    id="surname"
+                                    name="surname"
+                                />
+                                <span class="focus-border"></span>
+
+                                <label class="label" for="surname">
+                                    Second Name
+                                </label>
                                 <i class="icon-users"></i>
                             </div>
 
                             <div class="input-item">
                                 <select id="location" class="js-select">
-                                    <option value="">Country</option>
                                     <option value="Afghanistan">
                                         Afghanistan
                                     </option>
@@ -76,30 +93,64 @@
                                     <option value="Andorra">Australia</option>
                                     <option value="Andorra">Austria</option>
                                 </select>
+                                <span class="focus-border"></span>
+
+                                <label
+                                    id="choice-label"
+                                    class="label"
+                                    for="name"
+                                >
+                                    Country
+                                </label>
+
                                 <i class="icon-marker"></i>
                             </div>
 
                             <div class="input-item">
-                                <input type="text" id="phone" />
-                                <label for="phone">Phone</label>
+                                <input
+                                    autocomplete="one-time-code"
+                                    type="text"
+                                    id="phone"
+                                    name="phone"
+                                />
+                                <label class="label" for="phone">Phone</label>
                                 <i class="icon-phone"></i>
                             </div>
 
                             <div class="input-item">
-                                <input type="password" id="password" />
-                                <label for="password">Password</label>
+                                <input
+                                    autocomplete="one-time-code"
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                />
+                                <label class="label" for="password">
+                                    Password
+                                </label>
                                 <i class="icon-lock"></i>
                             </div>
 
                             <div class="input-item">
-                                <input type="password" id="confirm" />
-                                <label for="confirm">Confirm password</label>
+                                <input
+                                    autocomplete="one-time-code"
+                                    type="password"
+                                    id="confirm"
+                                    name="confirm"
+                                />
+                                <label class="label" for="confirm">
+                                    Confirm password
+                                </label>
                                 <i class="icon-locks"></i>
                             </div>
 
                             <div class="input-item">
-                                <input type="email" id="email" />
-                                <label for="email">Email</label>
+                                <input
+                                    autocomplete="one-time-code"
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                />
+                                <label class="label" for="email">Email</label>
                                 <i class="icon-mail"></i>
                             </div>
 

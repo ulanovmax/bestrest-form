@@ -23,6 +23,11 @@
         border: 1px solid var(--white);
         background: transparent;
         font-size: 19px;
+        height: 56px;
+
+        display: flex;
+        align-items: flex-end;
+        transition: padding 0.3s ease;
     }
 
     &__placeholder {
@@ -31,6 +36,16 @@
 
     &__list {
         padding: 0;
+
+        &--single {
+            width: 85%;
+
+            .choices__item {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
 
         &--dropdown {
             border-radius: 5px;
@@ -60,6 +75,8 @@
                 background: transparent !important;
                 transition: padding 0.3s ease;
 
+                @include max-line-leng(1);
+
                 &:first-child {
                     padding-top: 23px !important;
                 }
@@ -77,6 +94,14 @@
     }
 
     &.is-open {
+        .choices__inner {
+            padding-bottom: 7px !important;
+
+            &.default {
+                padding-bottom: 16px !important;
+            }
+        }
+
         &[data-type*='select-one']:after {
             transform: translateY(-50%) rotate(180deg);
         }

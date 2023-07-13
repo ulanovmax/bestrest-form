@@ -6,43 +6,52 @@ document.addEventListener('DOMContentLoaded', () => {
     if (inputs.length) {
         inputs.forEach((input) => {
             input.addEventListener('focus', () => {
-                input.classList.add('focused');
+                input.parentElement.classList.add('focused');
             });
 
             input.addEventListener('focusout', () => {
-                if (!input.value) input.classList.remove('focused');
+                if (!input.value)
+                    input.parentElement.classList.remove('focused');
             });
         });
     }
 });
 
-new Choices('select', {
+/* Select functionality */
+const select = document.querySelector('select');
+const choiceLabel = document.getElementById('choice-label');
+const choice = new Choices(select, {
     itemSelectText: '',
     searchEnabled: false,
 });
-// $('form').validate({
-//     rules: {
-//         name: {
-//             required: true,
-//             minlength: 4,
-//             maxlength: 16,
-//         },
-//         pswd: {
-//             required: true,
-//             minlength: 6,
-//             maxlength: 16,
-//         },
-//     },
-//     messages: {
-//         login: {
-//             required: 'Это поле обязательно для заполнения',
-//             minlength: 'Логин должен быть минимум 4 символа',
-//             maxlength: 'Максимальное число символов - 16',
-//         },
-//         pswd: {
-//             required: 'Это поле обязательно для заполнения',
-//             minlength: 'Пароль должен быть минимум 6 символа',
-//             maxlength: 'Пароль должен быть максимум 16 символов',
-//         },
-//     },
-// });
+
+select.addEventListener('showDropdown', () => {
+    const choiceHeader = choice.containerInner.element;
+    choice.containerOuter.element.parentElement.classList.add('focused');
+
+    if (choice.getValue()) {
+        choiceHeader.classList.add('default');
+    } else {
+        choiceHeader.classList.remove('default');
+    }
+});
+
+select.addEventListener('hideDropdown', () => {
+    choice.containerOuter.element.parentElement.classList.remove('focused');
+    console.log(choice);
+    if (choice.getValue()) choiceLabel.style.display = 'none';
+});
+
+choice.removeActiveItems();
+
+/* Form validation */
+
+$('form').validate({
+    rules: {
+        name: {
+            required: true,
+            maxlength: 16,
+        },
+    },
+    messages: {},
+});

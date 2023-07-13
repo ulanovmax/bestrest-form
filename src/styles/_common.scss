@@ -114,11 +114,26 @@ textarea {
 .cont {
     margin: 0 auto;
     max-width: 660px;
+    width: 100%;
     padding: 0 15px;
 }
 
 .input-item {
     position: relative;
+
+    .focus-border {
+        pointer-events: none;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        border: 1px solid var(--green);
+        border-radius: 5px;
+        height: 100%;
+        width: 0;
+        transition: 0.3s linear;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.4);
+    }
 
     [class^='icon-'] {
         color: var(--green);
@@ -126,27 +141,46 @@ textarea {
     }
 
     [class^='icon-'],
-    label {
+    .label {
         top: 50%;
         transform: translateY(-50%);
         position: absolute;
     }
 
-    label {
+    .label {
         left: 50px;
         transition: 0.3s ease;
         pointer-events: none;
     }
 
-    input.focused {
-        padding-bottom: 5px;
+    &.focused {
+        input {
+            padding-bottom: 5px;
+        }
 
-        & + label {
+        .focus-border {
+            width: 100%;
+            opacity: 1;
+            left: 0;
+        }
+
+        .label {
             font-size: 11px;
             transform: translateY(calc(-50% - 11px));
             color: var(--green);
         }
     }
+
+    label.error {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        font-size: 15px;
+    }
+}
+
+label.error {
+    color: var(--red);
 }
 
 .checkbox {
