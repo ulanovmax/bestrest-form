@@ -17,7 +17,11 @@
         <!-- Styles -->
         <link rel="stylesheet" href="./styles/style.scss" />
 
-        <!-- Script -->
+        <!-- Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
         <script type="module" src="./js/main.js"></script>
     </head>
 
@@ -34,69 +38,84 @@
                             <span>Sign Up</span> and find the best place to rest
                             while traveling
                         </h1>
+
+                        <div class="contact__heading-decors">
+                            <div class="decor decor--lg"></div>
+                            <div class="decor decor--sm"></div>
+                        </div>
                     </div>
 
                     <form class="contact__form">
-                        <div class="input-item">
-                            <input type="text" id="name" />
-                            <label for="name">First Name</label>
-                            <i class="icon-user"></i>
-                        </div>
+                        <div class="contact__form-wrap">
+                            <div class="input-item">
+                                <input type="text" id="name" name="name" />
+                                <label for="name">First Name</label>
+                                <i class="icon-user"></i>
+                            </div>
 
-                        <div class="input-item">
-                            <input type="text" id="surname" />
-                            <label for="surname">Second Name</label>
-                            <i class="icon-users"></i>
-                        </div>
+                            <div class="input-item">
+                                <input type="text" id="surname" />
+                                <label for="surname">Second Name</label>
+                                <i class="icon-users"></i>
+                            </div>
 
-                        <div class="input-item">
-                            <select id="location" class="js-select">
-                                <option value="">Country</option>
-                                <option value="Afghanistan">Afghanistan</option>
-                                <option value="Albania">Albania</option>
-                                <option value="Algeria">Algeria</option>
-                                <option value="Andorra">Andorra</option>
-                            </select>
-                            <label for="location">Country</label>
-                            <i class="icon-marker"></i>
-                        </div>
+                            <div class="input-item">
+                                <select id="location" class="js-select">
+                                    <option value="">Country</option>
+                                    <option value="Afghanistan">
+                                        Afghanistan
+                                    </option>
+                                    <option value="Albania">Albania</option>
+                                    <option value="Algeria">Algeria</option>
+                                    <option value="Andorra">Angola</option>
+                                    <option value="Andorra">
+                                        Antigua and Barbuda
+                                    </option>
+                                    <option value="Andorra">Argentina</option>
+                                    <option value="Andorra">Armenia</option>
+                                    <option value="Andorra">Australia</option>
+                                    <option value="Andorra">Austria</option>
+                                </select>
+                                <i class="icon-marker"></i>
+                            </div>
 
-                        <div class="input-item">
-                            <input type="text" id="phone" />
-                            <label for="phone">Phone</label>
-                            <i class="icon-phone"></i>
-                        </div>
+                            <div class="input-item">
+                                <input type="text" id="phone" />
+                                <label for="phone">Phone</label>
+                                <i class="icon-phone"></i>
+                            </div>
 
-                        <div class="input-item">
-                            <input type="password" id="password" />
-                            <label for="password">Password</label>
-                            <i class="icon-lock"></i>
-                        </div>
+                            <div class="input-item">
+                                <input type="password" id="password" />
+                                <label for="password">Password</label>
+                                <i class="icon-lock"></i>
+                            </div>
 
-                        <div class="input-item">
-                            <input type="password" id="confirm" />
-                            <label for="confirm">Confirm password</label>
-                            <i class="icon-locks"></i>
-                        </div>
+                            <div class="input-item">
+                                <input type="password" id="confirm" />
+                                <label for="confirm">Confirm password</label>
+                                <i class="icon-locks"></i>
+                            </div>
 
-                        <div class="input-item">
-                            <input type="email" id="email" />
-                            <label for="email">Email</label>
-                            <i class="icon-mail"></i>
-                        </div>
+                            <div class="input-item">
+                                <input type="email" id="email" />
+                                <label for="email">Email</label>
+                                <i class="icon-mail"></i>
+                            </div>
 
-                        <div class="checkbox">
-                            <input type="checkbox" id="checkbox" />
-                            <label for="checkbox">
-                                I agree to the
-                                <a href="#">Terms & Conditions</a>
+                            <label for="checkbox" class="checkbox">
+                                <input type="checkbox" id="checkbox" />
+                                <span>
+                                    I agree to the
+                                    <a href="#">Terms & Conditions</a>
+                                </span>
                             </label>
                         </div>
-                    </form>
 
-                    <div class="contact__footer">
-                        <p>If you have an account, <a href="#">Log In</a></p>
-                    </div>
+                        <button type="submit" class="btn">
+                            <span>Sign Up</span>
+                        </button>
+                    </form>
                 </div>
 
                 <div class="contact__bg">
@@ -107,6 +126,20 @@
                         />
                         <img src="./img/bg-cover.jpg" alt="" />
                     </picture>
+                </div>
+
+                <div class="contact__footer">
+                    <p>If you have an account, <a href="#">Log In</a></p>
+
+                    <div class="contact__footer-decors">
+                        <div class="decor decor--lg"></div>
+                        <div class="decor decor--sm"></div>
+                    </div>
+                </div>
+
+                <div class="contact__decors">
+                    <div class="decor decor--lg"></div>
+                    <div class="decor decor--md"></div>
                 </div>
             </section>
         </main>

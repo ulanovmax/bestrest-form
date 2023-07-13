@@ -1,3 +1,8 @@
+html,
+body {
+    height: 100%;
+}
+
 body {
     font-family: var(--font-main);
     color: var(--white);
@@ -7,9 +12,12 @@ body {
     font-weight: 300;
 }
 
-.cont {
-    margin: 0 auto;
-    max-width: 630px;
+main {
+    height: 100%;
+}
+
+img {
+    user-select: none;
 }
 
 a {
@@ -57,6 +65,58 @@ textarea {
     @include transparent-bg-input(var(--white));
 }
 
+.btn {
+    font-size: 19px;
+    padding: 16px 47px;
+    border-radius: 5px;
+    color: var(--black);
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    width: fit-content;
+    text-align: center;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+
+    &:before {
+        content: '';
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+        background: var(--green);
+        transition: all 0.3s ease-out;
+        pointer-events: none;
+    }
+
+    span {
+        position: relative;
+        z-index: 5;
+    }
+
+    &:hover {
+        border-color: var(--green);
+        color: var(--green);
+
+        &:before {
+            top: 100%;
+            border-radius: 50%;
+        }
+    }
+}
+
+.cont {
+    margin: 0 auto;
+    max-width: 660px;
+    padding: 0 15px;
+}
+
 .input-item {
     position: relative;
 
@@ -75,6 +135,7 @@ textarea {
     label {
         left: 50px;
         transition: 0.3s ease;
+        pointer-events: none;
     }
 
     input.focused {
@@ -88,12 +149,106 @@ textarea {
     }
 }
 
-.contact {
-    position: relative;
-    height: 100vh;
+.checkbox {
+    cursor: pointer;
 
     display: flex;
     align-items: center;
+
+    width: fit-content;
+    position: relative;
+
+    span {
+        padding-left: 31px;
+        position: relative;
+        display: block;
+        flex-shrink: 0;
+        font-size: 15px;
+        font-weight: 300;
+
+        transition: all 0.3s ease;
+        word-break: break-word;
+        width: 100%;
+
+        &:before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--green);
+            border-radius: 3px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.2s ease;
+            position: absolute;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('data:image/svg+xml,<svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.187438 5.45832C-0.058796 5.21732 -0.0629654 4.82242 0.178125 4.57628C0.419216 4.33014 0.814272 4.32598 1.06051 4.56697L5.51898 8.9306C5.76521 9.1716 5.76938 9.5665 5.52829 9.81263C5.2872 10.0588 4.89214 10.0629 4.64591 9.82195L0.187438 5.45832Z" fill="%23191310"/><path d="M11.8957 0.225578C12.1157 -0.0395762 12.5091 -0.076261 12.7743 0.14364C13.0396 0.36354 13.0763 0.756755 12.8563 1.02191L5.59546 9.77355C5.37547 10.0387 4.98211 10.0754 4.71685 9.85549C4.45159 9.63559 4.41489 9.24237 4.63488 8.97722L11.8957 0.225578Z" fill="%23191310"/></svg>');
+            background-size: 0;
+        }
+    }
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        min-height: auto;
+
+        &:checked + span {
+            &:before {
+                background-size: 100%;
+                background-color: var(--green);
+            }
+        }
+    }
+
+    &:hover {
+        span {
+            &:before {
+                background-color: var(--green);
+            }
+        }
+    }
+}
+
+.contact {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 100%;
+    padding: 100px 0 ac(31px, 56px);
+
+    .cont {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1 1 auto;
+        position: relative;
+    }
+
+    &__heading {
+        position: relative;
+
+        &-decors {
+            .decor {
+                &--lg {
+                    width: 46px;
+                    height: 46px;
+                    top: 22px;
+                    left: -22px;
+                }
+
+                &--sm {
+                    left: -20px;
+                    top: calc(100% - 24px);
+                }
+            }
+        }
+    }
 
     &__title {
         font-size: ac(24px, 19px);
@@ -118,9 +273,11 @@ textarea {
     }
 
     &__form {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        &-wrap {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
     }
 
     &__bg {
@@ -151,5 +308,108 @@ textarea {
             height: 100%;
             object-fit: cover;
         }
+    }
+
+    &__footer {
+        margin-top: 30px;
+
+        &-decors {
+            .decor {
+                &--lg {
+                    bottom: -4px;
+                    right: -20px;
+                }
+
+                &--sm {
+                    bottom: -5px;
+                    right: 30px;
+                }
+            }
+        }
+    }
+
+    .btn {
+        margin-top: ac(30px, 50px);
+    }
+
+    &__decors {
+        .decor {
+            &--lg {
+                top: 15px;
+                right: -1%;
+            }
+
+            &--md {
+                top: 17px;
+                right: -17px;
+            }
+        }
+    }
+
+    @include media(551) {
+        &__form-wrap {
+            grid-template-columns: 1fr;
+        }
+
+        .checkbox {
+            margin-top: 10px;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        &__logo {
+            display: none;
+        }
+    }
+}
+
+.decor {
+    position: absolute;
+    border-radius: 20%;
+    transform: rotate(45deg);
+    display: none;
+    animation: rotate-scale-up 8s linear infinite both;
+
+    &:nth-child(even) {
+        animation-direction: reverse;
+    }
+
+    &--lg {
+        width: 72px;
+        height: 72px;
+        background: var(--green);
+        opacity: 0.6;
+    }
+
+    &--md {
+        width: 34px;
+        height: 34px;
+        background: var(--green);
+    }
+
+    &--sm {
+        width: 23px;
+        height: 23px;
+        border: 2px solid var(--green);
+        opacity: 0.8;
+        border-radius: 25%;
+    }
+
+    @include media(551) {
+        display: block;
+    }
+}
+
+@keyframes rotate-scale-up {
+    0% {
+        transform: scale(1) rotateZ(0);
+    }
+    50% {
+        transform: scale(1.05) rotateZ(180deg);
+    }
+    100% {
+        transform: scale(1) rotateZ(360deg);
     }
 }

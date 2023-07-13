@@ -1,0 +1,84 @@
+.choices {
+    margin: 0;
+    font-size: 19px;
+
+    &[data-type*='select-one']:after {
+        border: none;
+        width: 25px;
+        height: 25px;
+        margin: 0 !important;
+        transition: transform 0.3s ease;
+
+        transform: translateY(-50%);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 55%;
+        background-image: url('data:image/svg+xml,<svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.32722 8.62336L14.668 2.00152C14.7732 1.89276 14.8567 1.76336 14.9137 1.62079C14.9707 1.47823 15 1.32531 15 1.17086C15 1.01642 14.9707 0.863501 14.9137 0.720933C14.8567 0.578366 14.7732 0.44897 14.668 0.340209C14.4578 0.122307 14.1733 9.85802e-09 13.8768 1.33936e-08C13.5803 1.69292e-08 13.2959 0.122307 13.0856 0.340209L7.4743 6.13139L1.91908 0.340209C1.70881 0.122307 1.42437 1.61888e-07 1.12788 1.65423e-07C0.831391 1.68959e-07 0.54695 0.122307 0.33668 0.340209C0.230639 0.448562 0.146277 0.577776 0.0884848 0.720362C0.0306921 0.862949 0.000617039 1.01607 9.67637e-07 1.17086C0.000617043 1.32566 0.0306921 1.47878 0.0884848 1.62137C0.146277 1.76395 0.230639 1.89317 0.33668 2.00152L6.67749 8.62336C6.78258 8.74211 6.91013 8.83689 7.0521 8.90171C7.19406 8.96654 7.34737 9 7.50236 9C7.65734 9 7.81065 8.96654 7.95262 8.90171C8.09458 8.83689 8.22213 8.74211 8.32722 8.62336Z" fill="white"/></svg>');
+    }
+
+    &__inner {
+        padding: 16px 0 16px 50px !important;
+        border-radius: 5px !important;
+        filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.3));
+        border: 1px solid var(--white);
+        background: transparent;
+        font-size: 19px;
+    }
+
+    &__placeholder {
+        opacity: 1;
+    }
+
+    &__list {
+        padding: 0;
+
+        &--dropdown {
+            border-radius: 5px;
+            padding: 5px 1px 0 23px;
+            top: calc(100% + 2px) !important;
+            border: none !important;
+
+            .choices__list {
+                max-height: 159px !important;
+
+                &::-webkit-scrollbar {
+                    width: 3px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: var(--light-grey);
+
+                    border-radius: 20px;
+                }
+            }
+
+            .choices__item--choice {
+                padding: 7.5px 0 !important;
+                color: var(--grey);
+                font-weight: 300;
+                font-size: 15px !important;
+                background: transparent !important;
+                transition: padding 0.3s ease;
+
+                &:first-child {
+                    padding-top: 23px !important;
+                }
+
+                &.is-selected {
+                    color: var(--black);
+                    padding-left: 10px !important;
+                }
+
+                &:hover {
+                    padding-left: 10px !important;
+                }
+            }
+        }
+    }
+
+    &.is-open {
+        &[data-type*='select-one']:after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+    }
+}
