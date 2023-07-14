@@ -136,6 +136,7 @@ label.error,
             height: 100%;
             top: 0;
             left: 0;
+            -webkit-backdrop-filter: blur(7px);
         }
 
         &:before {
