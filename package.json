@@ -2,7 +2,7 @@
   "name": "bestrest-form",
   "version": "1.0.0",
   "description": "",
-  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "browserslist": "> 0.5%, last 4 versions, not dead",
   "scripts": {
     "start": "parcel serve src/index.html",
     "build": "parcel build ./src/*.html --public-url ./"
