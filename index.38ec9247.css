@@ -564,7 +564,7 @@ label.error, .error-choice {
   align-items: center;
   min-height: 100%;
   padding: 100px 0 min(max(64.3333px - 2.31481vw, 31px), 56px);
-  display: none;
+  display: flex;
   position: relative;
   overflow: hidden;
 }
