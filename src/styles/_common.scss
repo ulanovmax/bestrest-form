@@ -121,6 +121,16 @@ textarea {
 .input-item {
     position: relative;
 
+    input {
+        position: relative;
+        z-index: 10;
+        transition: border 0.3s ease;
+
+        &.error {
+            border-color: var(--red);
+        }
+    }
+
     .focus-border {
         pointer-events: none;
         position: absolute;
@@ -156,6 +166,7 @@ textarea {
     &.focused {
         input {
             padding-bottom: 5px;
+            border-color: transparent;
         }
 
         .focus-border {
@@ -171,7 +182,8 @@ textarea {
         }
     }
 
-    label.error {
+    label.error,
+    .error-choice {
         position: absolute;
         top: calc(100% + 4px);
         left: 0;
@@ -179,7 +191,8 @@ textarea {
     }
 }
 
-label.error {
+label.error,
+.error-choice {
     color: var(--red);
 }
 

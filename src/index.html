@@ -21,6 +21,7 @@
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
         <script type="module" src="./js/main.js"></script>
     </head>
@@ -54,11 +55,11 @@
                                     id="name"
                                     name="name"
                                 />
-                                <span class="focus-border"></span>
-
                                 <label class="label" for="name">
                                     First Name
                                 </label>
+
+                                <span class="focus-border"></span>
                                 <i class="icon-user"></i>
                             </div>
 
@@ -69,16 +70,20 @@
                                     id="surname"
                                     name="surname"
                                 />
-                                <span class="focus-border"></span>
-
                                 <label class="label" for="surname">
                                     Second Name
                                 </label>
+
+                                <span class="focus-border"></span>
                                 <i class="icon-users"></i>
                             </div>
 
                             <div class="input-item">
-                                <select id="location" class="js-select">
+                                <select
+                                    id="location"
+                                    name="location"
+                                    class="js-select"
+                                >
                                     <option value="Afghanistan">
                                         Afghanistan
                                     </option>
@@ -93,7 +98,6 @@
                                     <option value="Andorra">Australia</option>
                                     <option value="Andorra">Austria</option>
                                 </select>
-                                <span class="focus-border"></span>
 
                                 <label
                                     id="choice-label"
@@ -103,17 +107,19 @@
                                     Country
                                 </label>
 
+                                <span class="focus-border"></span>
                                 <i class="icon-marker"></i>
                             </div>
 
                             <div class="input-item">
                                 <input
                                     autocomplete="one-time-code"
-                                    type="text"
                                     id="phone"
                                     name="phone"
                                 />
                                 <label class="label" for="phone">Phone</label>
+
+                                <span class="focus-border"></span>
                                 <i class="icon-phone"></i>
                             </div>
 
@@ -127,6 +133,8 @@
                                 <label class="label" for="password">
                                     Password
                                 </label>
+
+                                <span class="focus-border"></span>
                                 <i class="icon-lock"></i>
                             </div>
 
@@ -140,6 +148,8 @@
                                 <label class="label" for="confirm">
                                     Confirm password
                                 </label>
+
+                                <span class="focus-border"></span>
                                 <i class="icon-locks"></i>
                             </div>
 
@@ -151,6 +161,8 @@
                                     name="email"
                                 />
                                 <label class="label" for="email">Email</label>
+
+                                <span class="focus-border"></span>
                                 <i class="icon-mail"></i>
                             </div>
 
