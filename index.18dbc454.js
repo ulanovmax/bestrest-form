@@ -575,10 +575,29 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"1SICI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _choicesJs = require("choices.js");
-var _choicesJsDefault = parcelHelpers.interopDefault(_choicesJs);
+var _errorMessages = require("./errorMessages");
+var _errorMessagesDefault = parcelHelpers.interopDefault(_errorMessages);
+var _select = require("./select");
 document.addEventListener("DOMContentLoaded", ()=>{
-    const inputs = document.querySelectorAll("input");
+    const inputs = Array.from(document.querySelectorAll("input"));
+    const checkbox = document.querySelector('input[type="checkbox"]');
+    function addError() {
+        const errorLabel = document.createElement("span");
+        errorLabel.classList.add("error-select");
+        errorLabel.innerHTML = (0, _errorMessagesDefault.default).required;
+        return errorLabel;
+    }
+    function toggleSelectError() {
+        const choiceContainer = window.choice.containerOuter.element;
+        const choiceHeader = window.choice.containerInner.element;
+        if (!window.choice.getValue()) {
+            choiceHeader.classList.add("error");
+            choiceContainer.after(addError());
+        } else {
+            choiceHeader.classList.remove("error");
+            choiceContainer.nextElementSibling.style.display = "none";
+        }
+    }
     if (inputs.length) inputs.forEach((input)=>{
         input.addEventListener("focus", ()=>{
             input.parentElement.classList.add("focused");
@@ -587,14 +606,176 @@ document.addEventListener("DOMContentLoaded", ()=>{
             if (!input.value) input.parentElement.classList.remove("focused");
         });
     });
-    /* Select functionality */ const select = document.querySelector("select");
+    checkbox.addEventListener("change", ()=>{
+        if (checkbox.checked) checkbox.classList.remove("error");
+    });
+    /* Form validation */ const mainForm = document.querySelector("form");
+    const submitButton = mainForm.querySelector("button[type=submit]");
+    $(mainForm).validate({
+        errorElement: "span",
+        errorPlacement: function(error, element) {
+            error.insertBefore(element);
+        },
+        focusCleanup: true,
+        rules: {
+            name: {
+                required: true,
+                maxlength: 16,
+                minlength: 2
+            },
+            surname: {
+                required: true,
+                maxlength: 16,
+                minlength: 2
+            },
+            phone: {
+                required: true,
+                phoneCheck: true
+            },
+            location: {
+                required: true
+            },
+            terms: {
+                required: true
+            },
+            password: {
+                minlength: 8,
+                required: true,
+                passwordCheck: true
+            },
+            confirm: {
+                required: true,
+                equalTo: "#password"
+            }
+        },
+        messages: {
+            name: {
+                required: (0, _errorMessagesDefault.default).required,
+                minlength: jQuery.validator.format("The name must be more than 2 characters")
+            },
+            surname: {
+                required: (0, _errorMessagesDefault.default).required,
+                minlength: jQuery.validator.format("The name must be more than 2 characters")
+            },
+            phone: {
+                required: (0, _errorMessagesDefault.default).required
+            },
+            password: {
+                required: (0, _errorMessagesDefault.default).required
+            },
+            confirm: {
+                required: (0, _errorMessagesDefault.default).required,
+                equalTo: jQuery.validator.format((0, _errorMessagesDefault.default).confirm)
+            },
+            email: {
+                email: (0, _errorMessagesDefault.default).email
+            }
+        }
+    });
+    jQuery.validator.addMethod("passwordCheck", function(value, element) {
+        return /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).*$/.test(value);
+    }, "Password must have 1 letter, 1 number and one symbol");
+    jQuery.validator.addMethod("phoneCheck", function(value, element) {
+        return /^[\d+]+$/.test(value);
+    }, "Please enter only digits");
+    /* Set country code */ (0, _select.select).addEventListener("choice", (e)=>{
+        const phoneInput = inputs.find((el)=>el.id === "phone");
+        const code = e.detail.choice.value;
+        phoneInput.focus();
+        phoneInput.value = code;
+    });
+    (0, _select.select).addEventListener("change", ()=>toggleSelectError());
+    /* Validate on submit */ submitButton.addEventListener("click", ()=>{
+        toggleSelectError();
+        if (!checkbox.checked) checkbox.classList.add("error");
+        else checkbox.classList.remove("error");
+    });
+});
+/* Background animation */ const section = document.querySelector(".contact");
+function animateBackground(e) {
+    const moveX = e.pageX * -1 / 15;
+    const moveY = e.pageY * -1 / 15;
+    section.style.backgroundPosition = moveX + "px " + moveY + "px";
+}
+function toggleAnimation() {
+    if (window.innerWidth > 1150) document.addEventListener("mousemove", animateBackground);
+    else {
+        document.removeEventListener("mousemove", animateBackground);
+        section.style.backgroundPosition = "";
+    }
+}
+toggleAnimation();
+window.onresize = ()=>toggleAnimation();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"3dkiX","./errorMessages":"78cdZ","./select":"8pMAy"}],"3dkiX":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"78cdZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = {
+    required: "Fill in the field",
+    minLength: "The name must be more than 2 characters",
+    email: "Email is not correct",
+    confirm: "Password does not match",
+    phone: "Please"
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"3dkiX"}],"8pMAy":[function(require,module,exports) {
+/* Select functionality */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "select", ()=>select);
+var _choicesJs = require("choices.js");
+var _choicesJsDefault = parcelHelpers.interopDefault(_choicesJs);
+const select = document.querySelector("select");
+let loaded = false;
+const countries = fetch("https://gist.githubusercontent.com/anubhavshrimal/75f6183458db8c453306f93521e93d37/raw/f77e7598a8503f1f70528ae1cbf9f66755698a16/CountryCodes.json");
+countries.then((response)=>{
+    return response.json();
+}).then((data)=>{
+    data.forEach((country)=>{
+        const opt = document.createElement("option");
+        opt.value = country.dial_code;
+        opt.innerHTML = country.name;
+        select.appendChild(opt);
+    });
+    loaded = true;
+    setUpSelect();
+}).catch((error)=>console.log(error));
+function setUpSelect() {
     const choiceLabel = document.getElementById("choice-label");
     const choice = new (0, _choicesJsDefault.default)(select, {
         itemSelectText: "",
         searchEnabled: false
     });
     const choiceHeader = choice.containerInner.element;
-    const choiceContainer = choice.containerOuter.element;
     select.addEventListener("showDropdown", ()=>{
         choice.containerOuter.element.parentElement.classList.add("focused");
         if (choice.getValue()) choiceHeader.classList.add("default");
@@ -605,46 +786,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if (choice.getValue()) choiceLabel.style.display = "none";
     });
     choice.removeActiveItems();
-    /* Form validation */ const mainForm = document.querySelector("form");
-    const submitButton = mainForm.querySelector("button[type=submit]");
-    $(mainForm).validate({
-        rules: {
-            name: {
-                required: true,
-                maxlength: 16
-            },
-            surname: {
-                required: true,
-                maxlength: 16
-            },
-            phone: {
-                required: true,
-                phoneUS: true,
-                digits: true
-            },
-            password: {
-                minlength: 8,
-                required: true
-            },
-            confirm: {
-                required: true,
-                equalTo: "#password"
-            }
-        }
-    });
-    /* Validate select */ submitButton.addEventListener("click", ()=>{
-        const errorLabel = document.createElement("span");
-        errorLabel.classList.add("error-choice");
-        errorLabel.innerHTML = "This field is required.";
-        if (!choice.getValue()) {
-            choiceHeader.classList.add("error");
-            choiceContainer.after(errorLabel);
-        } else {
-            choiceHeader.classList.remove("error");
-            choiceContainer.nextElementSibling.style.display = "none";
-        }
-    });
-});
+    window.choice = choice;
+}
 
 },{"choices.js":"9eInI","@parcel/transformer-js/src/esmodule-helpers.js":"3dkiX"}],"9eInI":[function(require,module,exports) {
 /*! choices.js v10.2.0 | © 2022 Josh Johnson | https://github.com/jshjohnson/Choices#readme */ (function webpackUniversalModuleDefinition(root, factory) {
@@ -5919,36 +6062,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         /******/ return __webpack_exports__;
     /******/ }();
 });
-
-},{}],"3dkiX":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
 
 },{}]},["7kZrx","1SICI"], "1SICI", "parcelRequire8bc4")
 
