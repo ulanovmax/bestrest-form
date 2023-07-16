@@ -14,8 +14,6 @@ countries
         return response.json();
     })
     .then((data) => {
-        console.log(data);
-
         data.forEach((country) => {
             const opt = document.createElement('option');
             opt.value = country.dial_code;

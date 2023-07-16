@@ -5,14 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputs = Array.from(document.querySelectorAll('input'));
     const checkbox = document.querySelector('input[type="checkbox"]');
 
-    const choice = window.choice;
-
     function addError() {
         const errorLabel = document.createElement('span');
         errorLabel.classList.add('error-select');
         errorLabel.innerHTML = errorMessages.required;
 
         return errorLabel;
+    }
+
+    function toggleSelectError() {
+        const choiceContainer = window.choice.containerOuter.element;
+        const choiceHeader = window.choice.containerInner.element;
+
+        if (!window.choice.getValue()) {
+            choiceHeader.classList.add('error');
+            choiceContainer.after(addError());
+        } else {
+            choiceHeader.classList.remove('error');
+            choiceContainer.nextElementSibling.style.display = 'none';
+        }
     }
 
     if (inputs.length) {
@@ -124,18 +135,11 @@ document.addEventListener('DOMContentLoaded', () => {
         phoneInput.value = code;
     });
 
+    select.addEventListener('change', () => toggleSelectError());
+
     /* Validate on submit */
     submitButton.addEventListener('click', () => {
-        const choiceContainer = choice.containerOuter.element;
-        const choiceHeader = choice.containerInner.element;
-
-        if (!choice.getValue()) {
-            choiceHeader.classList.add('error');
-            choiceContainer.after(addError());
-        } else {
-            choiceHeader.classList.remove('error');
-            choiceContainer.nextElementSibling.style.display = 'none';
-        }
+        toggleSelectError();
 
         if (!checkbox.checked) {
             checkbox.classList.add('error');
