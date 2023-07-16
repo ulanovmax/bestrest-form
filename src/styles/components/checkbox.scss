@@ -78,6 +78,10 @@
         }
     }
 
+    span.error {
+        display: none !important;
+    }
+
     &:hover {
         span {
             &:before {

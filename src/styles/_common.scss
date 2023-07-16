@@ -76,6 +76,45 @@ span.error,
     min-height: 100%;
     padding: 100px 0 ac(31px, 56px);
 
+    background-image: url('../img/bg-cover.jpg');
+    background-size: 110vw;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &:before {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        -webkit-backdrop-filter: blur(7px);
+        pointer-events: none;
+    }
+
+    &:before {
+        content: '';
+        background: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            from(rgba(0, 0, 0, 0.65)),
+            to(rgba(0, 0, 0, 0.65))
+        );
+        background: -o-linear-gradient(
+            bottom,
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0.65) 100%
+        );
+        background: linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0.65) 100%
+        );
+        -webkit-backdrop-filter: blur(7px);
+        backdrop-filter: blur(7px);
+        pointer-events: none;
+    }
+
     .cont {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -146,51 +185,6 @@ span.error,
         }
     }
 
-    &__bg {
-        z-index: -1;
-
-        &,
-        &:before {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            -webkit-backdrop-filter: blur(7px);
-        }
-
-        &:before {
-            content: '';
-            background: -webkit-gradient(
-                linear,
-                left bottom,
-                left top,
-                from(rgba(0, 0, 0, 0.65)),
-                to(rgba(0, 0, 0, 0.65))
-            );
-            background: -o-linear-gradient(
-                bottom,
-                rgba(0, 0, 0, 0.65) 0%,
-                rgba(0, 0, 0, 0.65) 100%
-            );
-            background: linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.65) 0%,
-                rgba(0, 0, 0, 0.65) 100%
-            );
-            -webkit-backdrop-filter: blur(7px);
-            backdrop-filter: blur(7px);
-            pointer-events: none;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            -o-object-fit: cover;
-            object-fit: cover;
-        }
-    }
-
     &__footer {
         margin-top: ac(42px, 61px);
         font-size: 15px;
@@ -226,6 +220,10 @@ span.error,
                 right: -17px;
             }
         }
+    }
+
+    @include media(1150) {
+        background-size: cover;
     }
 
     @include media(551) {

@@ -50,6 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $(mainForm).validate({
         errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.insertBefore(element);
+        },
         focusCleanup: true,
 
         rules: {
@@ -67,7 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             phone: {
                 required: true,
-                digits: true,
+                phoneCheck: true,
+            },
+
+            location: {
+                required: true,
+            },
+
+            terms: {
+                required: true,
             },
 
             password: {
@@ -126,6 +137,14 @@ document.addEventListener('DOMContentLoaded', () => {
         'Password must have 1 letter, 1 number and one symbol'
     );
 
+    jQuery.validator.addMethod(
+        'phoneCheck',
+        function (value, element) {
+            return /^[\d+]+$/.test(value);
+        },
+        'Please enter only digits'
+    );
+
     /* Set country code */
     select.addEventListener('choice', (e) => {
         const phoneInput = inputs.find((el) => el.id === 'phone');
@@ -148,3 +167,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+/* Background animation */
+const section = document.querySelector('.contact');
+
+function animateBackground(e) {
+    const moveX = (e.pageX * -1) / 15;
+    const moveY = (e.pageY * -1) / 15;
+
+    section.style.backgroundPosition = moveX + 'px ' + moveY + 'px';
+}
+
+function toggleAnimation() {
+    if (window.innerWidth > 1150) {
+        document.addEventListener('mousemove', animateBackground);
+    } else {
+        document.removeEventListener('mousemove', animateBackground);
+        section.style.backgroundPosition = '';
+    }
+}
+
+toggleAnimation();
+
+window.onresize = () => toggleAnimation();
