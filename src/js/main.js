@@ -1,12 +1,11 @@
 import errorMessages from './errorMessages';
-import { choice } from './select';
+import { select } from './select';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const choiceContainer = choice.containerOuter.element;
-    const choiceHeader = choice.containerInner.element;
-
-    const inputs = document.querySelectorAll('input');
+    const inputs = Array.from(document.querySelectorAll('input'));
     const checkbox = document.querySelector('input[type="checkbox"]');
+
+    const choice = window.choice;
 
     function addError() {
         const errorLabel = document.createElement('span');
@@ -57,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             phone: {
                 required: true,
-                phoneUS: true,
                 digits: true,
             },
 
@@ -117,18 +115,28 @@ document.addEventListener('DOMContentLoaded', () => {
         'Password must have 1 letter, 1 number and one symbol'
     );
 
+    /* Set country code */
+    select.addEventListener('choice', (e) => {
+        const phoneInput = inputs.find((el) => el.id === 'phone');
+        const code = e.detail.choice.value;
+
+        phoneInput.focus();
+        phoneInput.value = code;
+    });
+
     /* Validate on submit */
     submitButton.addEventListener('click', () => {
+        const choiceContainer = choice.containerOuter.element;
+        const choiceHeader = choice.containerInner.element;
+
         if (!choice.getValue()) {
             choiceHeader.classList.add('error');
-            console.log(addError());
             choiceContainer.after(addError());
         } else {
             choiceHeader.classList.remove('error');
             choiceContainer.nextElementSibling.style.display = 'none';
         }
 
-        console.log(checkbox);
         if (!checkbox.checked) {
             checkbox.classList.add('error');
         } else {
