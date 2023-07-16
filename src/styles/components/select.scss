@@ -7,7 +7,17 @@
         width: 25px;
         height: 25px;
         margin: 0 !important;
+        -webkit-transition: -webkit-transform 0.3s ease;
+        transition: -webkit-transform 0.3s ease;
+        -o-transition: transform 0.3s ease;
         transition: transform 0.3s ease;
+        transition:
+            transform 0.3s ease,
+            -webkit-transform 0.3s ease;
+
+        -webkit-transform: translateY(-50%);
+
+        -ms-transform: translateY(-50%);
 
         transform: translateY(-50%);
         background-repeat: no-repeat;
@@ -19,14 +29,23 @@
     &__inner {
         padding: 16px 0 16px 50px !important;
         border-radius: 5px !important;
+        -webkit-filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.3));
         filter: drop-shadow(0px 4px 15px rgba(0, 0, 0, 0.3));
         border: 1px solid var(--white);
         background: transparent;
         font-size: 19px;
         height: 56px;
 
+        display: -webkit-box;
+
+        display: -ms-flexbox;
+
         display: flex;
+        -webkit-box-align: end;
+        -ms-flex-align: end;
         align-items: flex-end;
+        -webkit-transition: padding 0.3s ease;
+        -o-transition: padding 0.3s ease;
         transition: padding 0.3s ease;
 
         &.error {
@@ -47,6 +66,7 @@
             .choices__item {
                 overflow: hidden;
                 white-space: nowrap;
+                -o-text-overflow: ellipsis;
                 text-overflow: ellipsis;
             }
         }
@@ -78,6 +98,8 @@
                 font-weight: 300;
                 font-size: 15px !important;
                 background: transparent !important;
+                -webkit-transition: padding 0.3s ease;
+                -o-transition: padding 0.3s ease;
                 transition: padding 0.3s ease;
 
                 @include max-line-leng(1);
@@ -112,6 +134,8 @@
         }
 
         &[data-type*='select-one']:after {
+            -webkit-transform: translateY(-50%) rotate(180deg);
+            -ms-transform: translateY(-50%) rotate(180deg);
             transform: translateY(-50%) rotate(180deg);
         }
     }

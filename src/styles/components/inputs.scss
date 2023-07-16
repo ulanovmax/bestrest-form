@@ -12,11 +12,19 @@ textarea {
 
     padding: 16px 0 16px 50px;
 
+    &:hover {
+        border-color: var(--green);
+    }
+
     @include transparent-bg-input(var(--white));
 }
 
 .input-item {
     position: relative;
+
+    &--select {
+        z-index: 20;
+    }
 
     input {
         position: relative;
@@ -61,8 +69,6 @@ textarea {
     }
 
     &.focused {
-        z-index: 20;
-
         input {
             padding-bottom: 5px;
             border-color: transparent;
@@ -81,11 +87,10 @@ textarea {
         }
     }
 
-    label.error,
-    .error-choice {
+    span.error,
+    .error-select {
         position: absolute;
-        top: calc(100% + 4px);
-        left: 0;
-        font-size: 15px;
+        top: calc(100% + 6px);
+        right: 0;
     }
 }

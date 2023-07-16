@@ -168,6 +168,11 @@ img {
     max-width: 100%;
     vertical-align: middle;
     height: auto;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
